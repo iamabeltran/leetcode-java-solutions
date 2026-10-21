@@ -2,29 +2,37 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 class MyQueue {
-    Deque<Integer> deque = new ArrayDeque<>();
+    Deque<Integer> lifo = new ArrayDeque<>();
+    Deque<Integer> fifo = new ArrayDeque<>();
     public MyQueue() {
         
     }
     
     public void push(int x) {
-        deque.add(x);
+        lifo.push(x);
+        
     }
     
     public int pop() {
-        int num = deque.peek;
-        deque.removeFirst();
-        deque.
-        return num;
+        move();
+        return fifo.pop();
     }
     
     public int peek() {
-        return deque.getFirst();
+        move();
+        return fifo.peek();
     }
     
     public boolean empty() {
-        if(deque.size()>0)return false;
-        return true;
+        
+        return lifo.isEmpty() && fifo.isEmpty();
+    }
+    public void move(){
+        if (fifo.isEmpty()) {
+            while (!lifo.isEmpty()) {
+                fifo.push(lifo.pop());
+            }
+        }
     }
 }
 
